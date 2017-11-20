@@ -1,0 +1,79 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">-->
+        <!--[if lt IE 9]>
+            <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
+        <![endif]-->
+        <style>
+            .ui-datepicker td a:after {content: "\a0"; };
+        </style>
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+                <h1>Calendar widget</h1>
+
+                <p>Raw input obtained from backend: </p>
+                <p id="raw-input"></p>
+                <p><b>Travel duration: </b> 7 days</p>
+                <form id="calendar-form">
+                    <select id="calendar-travel-options">
+
+                    </select>
+                    <div id="calendar-controls">
+                        <a href="#" id="prev" class="month-nav-hidden"><</a>
+                        <a href="#" class="month-control month-active month-first" data-month-index="0"></a>
+                        <a href="#" class="month-control" data-month-index="1"></a>
+                        <a href="#" class="month-control" data-month-index="2"></a>
+                        <a href="#" class="month-control month-hidden" data-month-index="3"></a>
+                        <a href="#" class="month-control month-hidden" data-month-index="4"></a>
+                        <a href="#" class="month-control month-hidden" data-month-index="5"></a>
+                        <a href="#" class="month-control month-hidden" data-month-index="6"></a>
+                        <a href="#" class="month-control month-hidden month-last" data-month-index="7"></a>
+                        <a href="#" id="next">></a>
+                    </div>
+                    <div id="calendar"></div>
+                    <div id="calendar-airports"></div>
+                </form>
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+        <div id="calendar-popup-container">
+            <div class="calendar-popup">
+                <h3 class="airport-name">Afrejse fra <span></span></h3>
+                <p><span class="airport-date-from"></span> - <span class="airport-date-to"></span></p>
+                <p>Time: <span class="airport-time"></span></p>
+            </div>
+        </div>
+
+        <div id="calendar-style-container">
+
+        </div>
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        <!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
