@@ -214,7 +214,7 @@ function updateDatePickerCells() {
             } else {
                 var cellMinPrice = Math.min.apply(null, cellPriceArray).toString();
 
-                $('.ui-datepicker td.datepicker-' + cellDate).attr('data-price', cellMinPrice);
+                $('.ui-datepicker td.datepicker-' + cellDate).data('price', cellMinPrice);
 
                 // Add a "." (to mark thousands in bigger prices) to cellPrice before adding it to calendar
 
@@ -237,7 +237,7 @@ function updatePriceField(dp) {
     // dp is jQuery UI object of corresponding field in calendar. We create YYYY-MM-DD formatted date based on it.
 
     selectedDate = dp.selectedYear + "-" + (0 + (parseInt(dp.selectedMonth) + 1).toString()).slice(-2) + "-" + dp.selectedDay;
-    var activePrice = $('.ui-datepicker td.datepicker-' + selectedDate).attr('data-price');
+    var activePrice = $('.ui-datepicker td.datepicker-' + selectedDate).data('price');
 
     // Empty the airport list container
 
@@ -254,11 +254,12 @@ function updatePriceField(dp) {
 
     // Add event to buttons in airport list items
 
-    $("#calendar-airports").on('click', 'button', function (e) {
+
+    airportContainer.on('click', 'button', function (e) {
         e.preventDefault();
-        var clickedDate = $(this).parent().attr('data-date');
-        var clickedAirport = $(this).parent().attr('data-airport');
-        var clickedIndex = cellContents[clickedAirport][clickedDate]["Time"].indexOf($(this).parent().attr("data-time"));
+        var clickedDate = $(this).parent().data('date');
+        var clickedAirport = $(this).parent().data('airport');
+        var clickedIndex = cellContents[clickedAirport][clickedDate]["Time"].indexOf($(this).parent().data("time"));
         calendarPopup(clickedDate, clickedAirport, clickedIndex);
     });
 
@@ -292,10 +293,9 @@ var popupContainer = $("#calendar-popup-container ");
 
 popupContainer.click(function () {
     $(this).fadeOut();
-    return false;
 });
 
-$(".calendar-popup", popupContainer).click(function (e) {
+$(".calendar-popup").click(function (e) {
     e.stopPropagation();
 });
 
@@ -318,10 +318,10 @@ function calendarPopup(date, airport, index) {
 
     // Add values to DOM
 
-    $(".airport-name span", popupContainer).html(airport);
-    $(".airport-date-from", popupContainer).html(dateFromString);
-    $(".airport-date-to", popupContainer).html(dateToString);
-    $(".airport-time", popupContainer).html(calendarData['Time'][index]);
+    $(".airport-name span").html(airport);
+    $(".airport-date-from").html(dateFromString);
+    $(".airport-date-to").html(dateToString);
+    $(".airport-time").html(calendarData['Time'][index]);
 
     popupContainer.fadeIn();
 }
@@ -368,19 +368,16 @@ function airportDetailsContainer(name, date, price, time, active) {
 
 $('#next, #prev', calendarControls).on('click', function (e) {
     $('.ui-datepicker-' + e.target.id).trigger("click");
-    return false;
 });
 
 // Swipe navigation for mobiles
 
 $("#calendar-form").on("swipeleft", function () {
     $('.ui-datepicker-next').trigger("click");
-    return false;
 });
 
 $("#calendar-form").on("swiperight", function () {
     $('.ui-datepicker-prev').trigger("click");
-    return false;
 });
 
 // External navigation with month names
@@ -389,7 +386,7 @@ $('.month-control').each(function () {
 
     // Get month indexes and add specific class (for css changes), data-month (for changing function) and html content for navigations
 
-    var index = parseInt($(this).attr('data-month-index')) + activeMonth;
+    var index = parseInt($(this).data('month-index')) + activeMonth;
     var yearMod = 0;
 
     if (index > 12) {
@@ -397,12 +394,12 @@ $('.month-control').each(function () {
         yearMod = 1;
     }
 
-    $(this).addClass('month-control-' + (index)).attr('data-month', index).html(monthsArray[index - 1]);
+    $(this).addClass('month-control-' + (index)).data('month', index).html(monthsArray[index - 1]);
 
     // Month navigation on click
 
     $(this).click(function () {
-        if ($(this).attr('data-month') != activeMonth) {
+        if ($(this).data('month') != activeMonth) {
             var targetDay = new Date().getDate();
             var targetMonth = index.toString();
             var targetYear = new Date().getFullYear() + yearMod;
