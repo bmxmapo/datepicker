@@ -254,7 +254,8 @@ function updatePriceField(dp) {
 
     // Add event to buttons in airport list items
 
-    $("#calendar-airports").on('click', 'button', function (e) {
+
+    airportContainer.on('click', 'button', function (e) {
         e.preventDefault();
         var clickedDate = $(this).parent().data('date');
         var clickedAirport = $(this).parent().data('airport');
@@ -292,10 +293,9 @@ var popupContainer = $("#calendar-popup-container ");
 
 popupContainer.click(function () {
     $(this).fadeOut();
-    return false;
 });
 
-$(".calendar-popup", popupContainer).click(function (e) {
+$(".calendar-popup").click(function (e) {
     e.stopPropagation();
 });
 
@@ -318,10 +318,10 @@ function calendarPopup(date, airport, index) {
 
     // Add values to DOM
 
-    $(".airport-name span", popupContainer).html(airport);
-    $(".airport-date-from", popupContainer).html(dateFromString);
-    $(".airport-date-to", popupContainer).html(dateToString);
-    $(".airport-time", popupContainer).html(calendarData['Time'][index]);
+    $(".airport-name span").html(airport);
+    $(".airport-date-from").html(dateFromString);
+    $(".airport-date-to").html(dateToString);
+    $(".airport-time").html(calendarData['Time'][index]);
 
     popupContainer.fadeIn();
 }
@@ -368,19 +368,16 @@ function airportDetailsContainer(name, date, price, time, active) {
 
 $('#next, #prev', calendarControls).on('click', function (e) {
     $('.ui-datepicker-' + e.target.id).trigger("click");
-    return false;
 });
 
 // Swipe navigation for mobiles
 
 $("#calendar-form").on("swipeleft", function () {
     $('.ui-datepicker-next').trigger("click");
-    return false;
 });
 
 $("#calendar-form").on("swiperight", function () {
     $('.ui-datepicker-prev').trigger("click");
-    return false;
 });
 
 // External navigation with month names
