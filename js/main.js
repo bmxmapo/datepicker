@@ -299,6 +299,10 @@ $(".calendar-popup").click(function (e) {
     e.stopPropagation();
 });
 
+$(".calendar-popup-close").click(function () {
+    popupContainer.fadeOut();
+});
+
 
 function calendarPopup(date, airport, index) {
 
