@@ -303,6 +303,13 @@ $(".calendar-popup-close").click(function () {
     popupContainer.fadeOut();
 });
 
+$(document).keypress(function(e) {
+    if (popupContainer.is(":visible")) {
+        if (e.keyCode === 27) {
+            popupContainer.fadeOut();
+        }
+    }
+});
 
 function calendarPopup(date, airport, index) {
 
